@@ -35,6 +35,6 @@ public class Crystalz {
 /*
 does EventHandler vs. SubscribeEvent still matter?
 eventhandler is for lifetime events
-subscribeevent is for forge events
+subscribeevent is for forge events,
 
 */
