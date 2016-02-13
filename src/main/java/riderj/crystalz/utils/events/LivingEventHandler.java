@@ -31,20 +31,17 @@ public class LivingEventHandler {
 	@SubscribeEvent
 	public void onLivingEntityDie(LivingDeathEvent event){
 		World world = event.entity.worldObj;
-		crystals = 0;
 		if(!world.isRemote){
 					
 			if(event.source.getSourceOfDamage() instanceof EntityPlayerMP){
+				NBTTagCompound tagCompound = new NBTTagCompound();
+				event.entity.writeToNBT(tagCompound); // Printing just the tagCompound gives the list of what the entity has.
+				NBTTagList tagList = tagCompound.getTagList("Attributes", Constants.NBT.TAG_COMPOUND); //Since what we need is in attributes, and it's stored as an array, we need a tag list
+				tagCompound = tagList.getCompoundTagAt(0); //The attribute set we need is at index 0
+				health = tagCompound.getDouble("Base");
+
 				
-				if(health == -1){
-					NBTTagCompound tagCompound = new NBTTagCompound();
-					event.entity.writeToNBT(tagCompound); // Printing just the tagCompound gives the list of what the entity has.
-					NBTTagList tagList = tagCompound.getTagList("Attributes", Constants.NBT.TAG_COMPOUND); //Since what we need is in attributes, and it's stored as an array, we need a tag list
-					tagCompound = tagList.getCompoundTagAt(0); //The attribute set we need is at index 0
-					health = tagCompound.getDouble("Base");
-				}
 				
-				System.out.println(health);
 				
 				EntityPlayer player =  (EntityPlayer) event.source.getSourceOfDamage();
 				InventoryPlayer inv = player.inventory;
@@ -52,12 +49,15 @@ public class LivingEventHandler {
 				for(ItemStack items: inv.mainInventory){
 					if(items != null && items.getItem() instanceof BloodCrystal) crystals++;
 				}
+				System.out.println(health/crystals +"\nCrystals:"+crystals);
 				for(ItemStack items:inv.mainInventory){
 					if(items == null) continue;
 					if(items.getItem() instanceof BloodCrystal){
-						items.getTagCompound().setInteger("charge", (int)(items.getTagCompound().getInteger("charge")+(int)(health)));
+						items.getTagCompound().setInteger("charge", (int)(items.getTagCompound().getInteger("charge")+(int)(health)/crystals));
+						
 					}
 				}
+				crystals = 0;
 			}
 		}
 	}
