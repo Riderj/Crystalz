@@ -3,7 +3,7 @@ package riderj.crystalz.utils.proxies;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import riderj.crystalz.client.items.CrystalzItems;
+import riderj.crystalz.items.CrystalzItems;
 import riderj.crystalz.utils.tabs.CrystalzTabs;
 
 public class ClientProxy extends CommonProxy {

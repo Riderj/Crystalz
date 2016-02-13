@@ -4,7 +4,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import riderj.crystalz.client.items.CrystalzItems;
+import riderj.crystalz.items.CrystalzItems;
 import riderj.crystalz.utils.events.LivingEventHandler;
 
 public class CommonProxy {

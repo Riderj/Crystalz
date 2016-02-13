@@ -1,13 +1,9 @@
-package riderj.crystalz.client.items;
+package riderj.crystalz.items;
 
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import riderj.crystalz.items.BloodCrystal;
-import riderj.crystalz.items.ElementalCrystal;
-import riderj.crystalz.items.EnergyCrystal;
-import riderj.crystalz.items.IceCrystal;
 
 public class CrystalzItems {
 	

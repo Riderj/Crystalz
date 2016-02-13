@@ -3,7 +3,7 @@ package riderj.crystalz.utils.tabs;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import riderj.crystalz.client.items.CrystalzItems;
+import riderj.crystalz.items.CrystalzItems;
 import riderj.crystalz.utils.Utils;
 
 public class CrystalzTabs extends CreativeTabs {
