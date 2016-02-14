@@ -11,6 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiScreenEvent.KeyboardInputEvent;
+import riderj.crystalz.Crystalz;
+import riderj.crystalz.client.gui.CrystalzGuiHandler;
 import riderj.crystalz.utils.tabs.CrystalzTabs;
 
 public class BaseCrystal extends Item{
@@ -78,9 +80,12 @@ public class BaseCrystal extends Item{
 	}
 	
 	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn){
-		if(!worldIn.isRemote){
+		/*if(!worldIn.isRemote){
 			playerIn.addChatComponentMessage(new ChatComponentText(""+itemStackIn.getTagCompound().getInteger("charge")+"/"+itemStackIn.getTagCompound().getInteger("maxCharge")));
-		}
+		}*/
+		if(worldIn.isRemote)
+		playerIn.openGui(Crystalz.instance, CrystalzGuiHandler.CRYSTAL_STATS_GUI, worldIn, (int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ);
+		
 		return itemStackIn;
 	}
 }

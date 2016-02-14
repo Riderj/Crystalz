@@ -13,6 +13,10 @@ import riderj.crystalz.utils.proxies.CommonProxy;
 @Mod(modid = Reference.MODID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 
 public class Crystalz {
+	
+	@Mod.Instance
+	public static Crystalz instance;
+	
 	@SidedProxy(clientSide=Reference.CLIENT_PROXY, serverSide=Reference.COMMON_PROXY)
 	public static CommonProxy proxy;;
 	
