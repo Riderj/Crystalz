@@ -31,7 +31,6 @@ public class LivingEventHandler {
 	@SubscribeEvent
 	public void onLivingEntityDie(LivingDeathEvent event){
 		World world = event.entity.worldObj;
-		if(!world.isRemote){
 					
 			if(event.source.getSourceOfDamage() instanceof EntityPlayerMP){
 				NBTTagCompound tagCompound = new NBTTagCompound();
@@ -49,17 +48,15 @@ public class LivingEventHandler {
 				for(ItemStack items: inv.mainInventory){
 					if(items != null && items.getItem() instanceof BloodCrystal) crystals++;
 				}
-				System.out.println(health/crystals +"\nCrystals:"+crystals);
 				for(ItemStack items:inv.mainInventory){
 					if(items == null) continue;
 					if(items.getItem() instanceof BloodCrystal){
-						items.getTagCompound().setInteger("charge", (int)(items.getTagCompound().getInteger("charge")+(int)(health)/crystals));
+						items.getTagCompound().setInteger("blood", (int)(items.getTagCompound().getInteger("blood")+(int)(health)/(int)(1+Math.random()*50)));
 						
 					}
 				}
 				crystals = 0;
 			}
-		}
 	}
 	
 	

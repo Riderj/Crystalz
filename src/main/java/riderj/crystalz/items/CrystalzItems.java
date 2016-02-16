@@ -39,7 +39,7 @@ public class CrystalzItems {
 	public static void renderItems(Item item){
 
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n"+item.getRegistryName());
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(),"inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(),"canterburry"));
 	}
 	
 	

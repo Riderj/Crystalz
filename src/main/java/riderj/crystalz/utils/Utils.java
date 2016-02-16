@@ -12,6 +12,7 @@ public class Utils {
 	}
 	
 	public static ToolMaterial addCrystalMaterial(String name, int harvestLevel, int maxUses, float efficiency, float damage, int enchantability){
+		
 		return EnumHelper.addToolMaterial(name, harvestLevel, maxUses, efficiency, damage, enchantability);
 	}
 }

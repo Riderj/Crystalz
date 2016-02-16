@@ -5,12 +5,12 @@ import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.GuiScreenEvent.KeyboardInputEvent;
 import riderj.crystalz.Crystalz;
 import riderj.crystalz.client.gui.CrystalzGuiHandler;
 import riderj.crystalz.utils.tabs.CrystalzTabs;
@@ -60,7 +60,9 @@ public class BaseCrystal extends Item{
 	}
 	
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected){
-			
+			if(isSelected && worldIn.getTotalWorldTime() % 20 == 0 && !worldIn.isRemote){
+				System.out.println("hi");
+			}
 	}
 	
 	@Override
@@ -72,8 +74,10 @@ public class BaseCrystal extends Item{
 		if(stackTagCompound == null){
 			stack.setTagCompound(new NBTTagCompound());
 			stackTagCompound = stack.getTagCompound();
-			stackTagCompound.setInteger("maxCharge", maxCharge);
-			stackTagCompound.setInteger("charge", charge);
+			stackTagCompound.setInteger("blood", 0);
+			stackTagCompound.setInteger("fire", 0);
+			stackTagCompound.setInteger("water", 0);
+			stackTagCompound.setInteger("nature", 0);
 		}
 		
 		subItems.add(stack);
@@ -87,5 +91,21 @@ public class BaseCrystal extends Item{
 		playerIn.openGui(Crystalz.instance, CrystalzGuiHandler.CRYSTAL_STATS_GUI, worldIn, (int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ);
 		
 		return itemStackIn;
+	} 
+	
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+		int blood, fire, water, nature;
+		
+		
+		if(stack.getTagCompound() != null){
+			fire = stack.getTagCompound().getInteger("fire");
+			water = stack.getTagCompound().getInteger("water");
+			nature = stack.getTagCompound().getInteger("nature");
+			
+			tooltip.add(EnumChatFormatting.RED+"Fire: "+fire);
+			tooltip.add(EnumChatFormatting.BLUE+"Water: "+water);
+			tooltip.add(EnumChatFormatting.GREEN+"Nature: "+nature);
+		}
 	}
 }
